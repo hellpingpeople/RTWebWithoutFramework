@@ -126,7 +126,7 @@ public class MainFrameServlet extends HttpServlet
         }
 
         req.setAttribute("form", form);
-        getServletContext().getRequestDispatcher("/MainFrame.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/MainFrame.jspx").forward(req, resp);
     }
 
     // Здесь мы проверям какое действие нам надо сделать – и возвращаем ответ
