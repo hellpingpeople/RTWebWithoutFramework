@@ -21,7 +21,7 @@ public class MainFrameServlet extends HttpServlet
 {
     protected void processRequest(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        // Установка кодировки для принятия параметров
+
         req.setCharacterEncoding("UTF-8");
         int answer = 0;
         try {
@@ -31,8 +31,7 @@ public class MainFrameServlet extends HttpServlet
         } catch (Exception e) {
             e.printStackTrace();
         }
-        // Тут надо сделать вызов другой формы, которая перенаправит сервлет
-// на другую JSP для ввода данных о новом человеке
+
         if (answer == 1) {
             try {
                 Persona s = new Persona();
@@ -43,7 +42,7 @@ public class MainFrameServlet extends HttpServlet
                 sForm.initFromPersona(s);
                 sForm.setAutos(autos);
                 req.setAttribute("persona", sForm);
-                getServletContext().getRequestDispatcher("/PersonaForm.jsp").forward(req, resp);
+                getServletContext().getRequestDispatcher("/PersonaFrame.jsp").forward(req, resp);
                 return;
             } catch (SQLException sql_e) {
                 throw new IOException(sql_e.getMessage());
@@ -53,8 +52,7 @@ public class MainFrameServlet extends HttpServlet
         }
 
         if (answer == 2) {
-            // Тут надо сделать вызов другой формы, которая перенаправит сервлет
-            // на другую JSP для ввода данных о человекее
+
             try {
                 if (req.getParameter("personaId") != null) {
                     int stId = Integer.parseInt(req.getParameter("personaId"));
@@ -77,7 +75,7 @@ public class MainFrameServlet extends HttpServlet
         String ys = req.getParameter("year");
 
         if (answer == 3) {
-            // Здесь мы перемещаем стедунтов в другую группу
+
             String newGs = req.getParameter("newAutoId");
             String newYs = req.getParameter("newYear");
             try {
@@ -86,7 +84,7 @@ public class MainFrameServlet extends HttpServlet
                 Auto ng = new Auto();
                 ng.setAutoId(Integer.parseInt(newGs));
                 ManagementSystem.getInstance().movePersonsToAuto(g, Integer.parseInt(ys), ng, Integer.parseInt(newYs));
-                // Теперь мы будем показывать группу, куда переместили
+
                 gs = newGs;
                 ys = newYs;
             } catch (SQLException sql_e) {
@@ -124,10 +122,10 @@ public class MainFrameServlet extends HttpServlet
         }
 
         req.setAttribute("form", form);
-        getServletContext().getRequestDispatcher("/MainFrame.jspx").forward(req, resp);
+        getServletContext().getRequestDispatcher("/MainFrame.jsp").forward(req, resp);
     }
 
-    // Здесь мы проверям какое действие нам надо сделать – и возвращаем ответ
+
     private int checkAction(HttpServletRequest req) throws Exception {
         if (req.getParameter("Add") != null) {
             return 1;
@@ -149,7 +147,7 @@ public class MainFrameServlet extends HttpServlet
         return 0;
     }
 
-    // Переопределим стандартные методы
+
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req, resp);
     }

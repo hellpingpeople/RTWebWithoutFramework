@@ -37,7 +37,7 @@
     </table>
 
     <p/>
-    <b>Список студентов для выбранных параметров:<b>
+    <b>Список людей для выбранных параметров:<b>
         <br/>
         <table>
             <tr>
@@ -65,21 +65,7 @@
         </table>
 
         <p/>
-        <b>Переместить студентов в группу<b>
-            <br/>
-            <table>
-                <tr>
-                    <td>Год:<input type="text" name="newYear" value="${form.year}"/><br/></td>
-                    <td>Список групп:
-                        <select name="newGroupId">
-                            <c:forEach var="auto" items="${form.autos}">
-                                <option value="${auto.autoId}"><c:out value="${auto.getModelName}"/></option>
-                            </c:forEach>
-                        </select>
-                    </td>
-                    <td><input type="submit" name="MoveAuto" value="Переместить"/></td>
-                </tr>
-            </table>
+
 </form>
 </body>
 </html>

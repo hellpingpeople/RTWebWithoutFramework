@@ -23,11 +23,15 @@ public class DataDao {
         String data;
         try {
 
-            ps = connection.prepareStatement("SELECT * FROM persona where sur_name like ?");
+            ps = connection.prepareStatement("SELECT * FROM persona where sur_name like ? or first_name like ? ");
             ps.setString(1, re + "%");
+            ps.setString(2,re+"%");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                data = rs.getString(2);
+                data = rs.getString("sur_name") + " "
+                        + rs.getString("first_name") + " "+
+                            rs.getString("patronymic") + " "+
+                            rs.getString("date_of_birth");
                 list.add(data);
             }
         } catch (Exception e) {

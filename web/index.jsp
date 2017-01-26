@@ -11,13 +11,13 @@
 <html>
 <head>
   <title>ТЗ для РТ</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta charset="UTF-8">
 
   <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
   <link rel="stylesheet" type="text/css" media="screen" href="/public/stylesheets/main.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js" type="text/javascript" charset="UTF-8"></script>
-  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js" type="text/javascript" charset="UTF-8"></script>
-  <script src="/public/javascripts/autocompleter.js" type="text/javascript" charset="UTF-8"></script>
+  <script src="//code.jquery.com/jquery-1.10.2.js" type="text/javascript"></script>
+  <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js" type="text/javascript" ></script>
+  <script src="/public/javascripts/autocompleter.js" type="text/javascript"></script>
 
 </head>
 
@@ -26,14 +26,6 @@
 <div id="header">
   <h1>ТЗ для РТ</h1>
   <div id="options">
-    |
-    <a href="${autos.getModelName}">Поиск человека</a>
-    |
-    <a href="${Autos.index()}">Список авто</a>
-    |
-    <a href="${Persons.settings()}">Настройки</a>
-    |
-    <a href="${Application.logout()}">Выход</a>
   </div>
 </div>
 
@@ -48,12 +40,6 @@
 
 
     <br>
-    Показывать по:
-    <select id="size">
-      <option value="5">5</option>
-      <option value="10">10</option>
-      <option value="20">20</option>
-    </select>
   </p>
 
   <div id="result">

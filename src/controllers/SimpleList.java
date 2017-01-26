@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -26,7 +27,7 @@ import java.util.List;
 public class SimpleList extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        resp.setContentType("text / html;charset=UTF-8");
+        resp.setContentType("text/html;charset=UTF-8");
         PrintWriter pw = resp.getWriter();
         pw.println("<B> Список людей</B>");
         pw.println("<table border = 1>");
