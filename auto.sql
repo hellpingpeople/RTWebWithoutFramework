@@ -1,6 +1,6 @@
-﻿CREATE TABLE persona
+﻿CREATE TABLE auto
 
-(persona_id int not null,
+(aut_id int not null,
   first_name varchar(255) not null,
   sur_name varchar(255) not null,
   patronymic varchar(255) not null,
