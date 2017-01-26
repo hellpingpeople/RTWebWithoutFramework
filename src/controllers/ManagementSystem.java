@@ -3,6 +3,10 @@ package controllers;
 import models.Auto;
 import models.Persona;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,50 +19,57 @@ public class ManagementSystem
 {
     private static Connection con;
     private static ManagementSystem instance;
+    private static DataSource dataSource;
 
-    private ManagementSystem() throws Exception {
-        try {
-            Class.forName("org.postgresql.Driver");
-            String url = "jdbc:postgresql://localhost:5432/rtdb";
-            con = DriverManager.getConnection(url, "postgres", "postgres");
-        } catch (ClassNotFoundException e) {
-            throw new Exception(e);
-        } catch (SQLException e) {
-            throw new Exception(e);
-        }
-    }
-
-    public static synchronized ManagementSystem getInstance() throws Exception {
-        if (instance == null) {
-            instance = new ManagementSystem();
-        }
-        return instance;
-    }
-//    private ManagementSystem() {
-//    }
-//
-//    public static synchronized ManagementSystem getInstance() {
-//        if (instance == null) {
+    //    private ManagementSystem() throws Exception {
+//        try {
 //            Class.forName("org.postgresql.Driver");
-//            try {
-//                instance = new ManagementSystem();
-//                Context ctx = new InitialContext();
-//                instance.dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/RtDB");
-//
-//                try {
-//
-//                    con = dataSource.getConnection();
-//                } catch (SQLException e) {
-//                    e.printStackTrace();
-//                }
-//            } catch (NamingException e) {
-//                e.printStackTrace();
-//
-//            }
-//            return instance;
+//            String url = "jdbc:postgresql://localhost:5432/rtdb";
+//            con = DriverManager.getConnection(url, "postgres", "postgres");
+//        } catch (ClassNotFoundException e) {
+//            throw new Exception(e);
+//        } catch (SQLException e) {
+//            throw new Exception(e);
 //        }
-//        return null;
 //    }
+//
+//    public static synchronized ManagementSystem getInstance() throws Exception {
+//        if (instance == null) {
+//            instance = new ManagementSystem();
+//        }
+//        return instance;
+//    }
+    private ManagementSystem() throws Exception{
+    }
+
+    public static synchronized ManagementSystem getInstance() {
+        if (instance == null) {
+            try {
+                Class.forName("org.postgresql.Driver");
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            try {
+                instance = new ManagementSystem();
+                Context ctx = new InitialContext();
+                instance.dataSource = (DataSource) ctx.lookup("java:comp/env/jdbc/RtDB");
+
+                try {
+
+                    con = dataSource.getConnection();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            } catch (NamingException e) {
+                e.printStackTrace();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return instance;
+        }
+        return null;
+    }
 
 
 

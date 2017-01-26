@@ -16,7 +16,7 @@ insert into persona(persona_id, first_name, sur_name, patronymic,  date_of_birth
 values (2, 'Александр', 'Хоботов', 'Аркадьевич', '1978-01-01', 'M', 1);
 insert into persona(persona_id, first_name, sur_name, patronymic,  date_of_birth, sex, auto_id)
 values (3, 'Василий', 'Слонидзе', 'Аркадьевич', '1978-01-01', 'M', 3);
-insert into persona(persona_id, first_name, sur_name, patronymic,  ddate_of_birth, sex, auto_id)
+insert into persona(persona_id, first_name, sur_name, patronymic,  date_of_birth, sex, auto_id)
 values (4, 'Иван', 'Чичваркин', 'Аркадьевич', '1978-01-01', 'M', 5);
 insert into persona(persona_id, first_name, sur_name, patronymic,  date_of_birth, sex, auto_id)
 values (5, 'Семён', 'Арбузов', 'Аркадьевич', '1978-01-01', 'M', 6);
