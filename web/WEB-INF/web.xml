@@ -5,9 +5,25 @@
          version="3.1">
     <display-name>Люди и машины</display-name>
     <servlet>
+        <servlet-name>MainFrameServlet</servlet-name>
+        <servlet-class>views.MainFrameServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PersonForm</servlet-name>
+        <servlet-class>views.PersonaForm</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>SimpleList</servlet-name>
         <servlet-class>controllers.SimpleList</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>MainFrameServlet</servlet-name>
+        <url-pattern>/main</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PersonForm</servlet-name>
+        <url-pattern>/edit</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SimpleList</servlet-name>
         <url-pattern>/simple</url-pattern>

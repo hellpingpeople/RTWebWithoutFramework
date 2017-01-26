@@ -1,20 +1,23 @@
 package views;
 
 import controllers.ManagementSystem;
+import models.Auto;
 import models.Persona;
+
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Date;
+import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.sql.Date;
-import java.sql.SQLException;
-import java.util.Calendar;
-import java.util.Collection;
 
 /**
- * Created by zaicys on 26.01.2017.
+ * Created by Alexander Vashurin on 26.01.2017.
  */
 public class MainFrameServlet extends HttpServlet
 {
@@ -27,69 +30,76 @@ public class MainFrameServlet extends HttpServlet
             answer = checkAction(req);
         } catch (SQLException sql_e) {
             throw new IOException(sql_e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        // Тут надо сделать вызов другой формы, которая перенаправит сервлет
+// на другую JSP для ввода данных о новом человеке
         if (answer == 1) {
-            // Тут надо сделать вызов другой формы, которая перенаправит сервлет
-            // на другую JSP для ввода данных о новом студенте
             try {
                 Persona s = new Persona();
                 s.setPersonaId(0);
                 s.setDateOfBirth(new Date());
                 Collection autos = ManagementSystem.getInstance().getAutos();
-                StudentForm sForm = new StudentForm();
-                sForm.initFromStudent(s);
-                sForm.setGroups(groups);
-                req.setAttribute("student", sForm);
-                getServletContext().getRequestDispatcher("/StudentFrame.jsp").forward(req, resp);
+                PersonaForm sForm = new PersonaForm();
+                sForm.initFromPersona(s);
+                sForm.setAutos(autos);
+                req.setAttribute("persona", sForm);
+                getServletContext().getRequestDispatcher("/PersonaForm.jsp").forward(req, resp);
                 return;
             } catch (SQLException sql_e) {
                 throw new IOException(sql_e.getMessage());
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
         }
 
         if (answer == 2) {
             // Тут надо сделать вызов другой формы, которая перенаправит сервлет
-            // на другую JSP для ввода данных о студенте
+            // на другую JSP для ввода данных о человекее
             try {
-                if (req.getParameter("studentId") != null) {
-                    int stId = Integer.parseInt(req.getParameter("studentId"));
-                    Student s = ManagementSystem.getInstance().getStudentById(stId);
-                    Collection groups = ManagementSystem.getInstance().getGroups();
-                    StudentForm sForm = new StudentForm();
-                    sForm.initFromStudent(s);
-                    sForm.setGroups(groups);
-                    req.setAttribute("student", sForm);
-                    getServletContext().getRequestDispatcher("/StudentFrame.jsp").forward(req, resp);
+                if (req.getParameter("personaId") != null) {
+                    int stId = Integer.parseInt(req.getParameter("personaId"));
+                    Persona s = ManagementSystem.getInstance().getPersonById(stId);
+                    Collection autos = ManagementSystem.getInstance().getAutos();
+                    PersonaForm sForm = new PersonaForm();
+                    sForm.initFromPersona(s);
+                    sForm.setAutos(autos);
+                    req.setAttribute("persona", sForm);
+                    getServletContext().getRequestDispatcher("/PersonaForm.jsp").forward(req, resp);
                     return;
                 }
             } catch (SQLException sql_e) {
                 throw new IOException(sql_e.getMessage());
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
-        String gs = req.getParameter("groupId");
+        String gs = req.getParameter("autoId");
         String ys = req.getParameter("year");
 
         if (answer == 3) {
             // Здесь мы перемещаем стедунтов в другую группу
-            String newGs = req.getParameter("newGroupId");
+            String newGs = req.getParameter("newAutoId");
             String newYs = req.getParameter("newYear");
             try {
-                Group g = new Group();
-                g.setGroupId(Integer.parseInt(gs));
-                Group ng = new Group();
-                ng.setGroupId(Integer.parseInt(newGs));
-                ManagementSystem.getInstance().moveStudentsToGroup(g, Integer.parseInt(ys), ng, Integer.parseInt(newYs));
+                Auto g = new Auto();
+                g.setAutoId(Integer.parseInt(gs));
+                Auto ng = new Auto();
+                ng.setAutoId(Integer.parseInt(newGs));
+                ManagementSystem.getInstance().movePersonsToAuto(g, Integer.parseInt(ys), ng, Integer.parseInt(newYs));
                 // Теперь мы будем показывать группу, куда переместили
                 gs = newGs;
                 ys = newYs;
             } catch (SQLException sql_e) {
                 throw new IOException(sql_e.getMessage());
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
-        int groupId = -1;
+        int autoId = -1;
         if (gs != null) {
-            groupId = Integer.parseInt(gs);
+            autoId = Integer.parseInt(gs);
         }
         int year = Calendar.getInstance().get(Calendar.YEAR);
         if (ys != null) {
@@ -97,20 +107,22 @@ public class MainFrameServlet extends HttpServlet
         }
         MainFrameForm form = new MainFrameForm();
         try {
-            Collection groups = ManagementSystem.getInstance().getGroups();
-            Group g = new Group();
-            g.setGroupId(groupId);
-            if (groupId == -1) {
-                Iterator i = groups.iterator();
-                g = (Group) i.next();
+            Collection autos = ManagementSystem.getInstance().getAutos();
+            Auto g = new Auto();
+            g.setAutoId(autoId);
+            if (autoId == -1) {
+                Iterator i = autos.iterator();
+                g = (Auto) i.next();
             }
-            Collection students = ManagementSystem.getInstance().getStudentsFromGroup(g, year);
-            form.setGroupId(g.getGroupId());
+            Collection persons = ManagementSystem.getInstance().getPersonFromAuto(g, year);
+            form.setAutoId(g.getAutoId());
             form.setYear(year);
-            form.setGroups(groups);
-            form.setStudents(students);
+            form.setAutos(autos);
+            form.setPersons(persons);
         } catch (SQLException sql_e) {
             throw new IOException(sql_e.getMessage());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         req.setAttribute("form", form);
@@ -118,7 +130,7 @@ public class MainFrameServlet extends HttpServlet
     }
 
     // Здесь мы проверям какое действие нам надо сделать – и возвращаем ответ
-    private int checkAction(HttpServletRequest req) throws SQLException {
+    private int checkAction(HttpServletRequest req) throws Exception {
         if (req.getParameter("Add") != null) {
             return 1;
         }
@@ -129,10 +141,10 @@ public class MainFrameServlet extends HttpServlet
             return 3;
         }
         if (req.getParameter("Delete") != null) {
-            if (req.getParameter("studentId") != null) {
-                Student s = new Student();
-                s.setStudentId(Integer.parseInt(req.getParameter("studentId")));
-                ManagementSystem.getInstance().deleteStudent(s);
+            if (req.getParameter("personaId") != null) {
+                Persona s = new Persona();
+                s.setPersonaId(Integer.parseInt(req.getParameter("personaId")));
+                ManagementSystem.getInstance().deletePersona(s);
             }
             return 0;
         }

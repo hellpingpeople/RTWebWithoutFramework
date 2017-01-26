@@ -3,7 +3,7 @@ package views;
 import java.util.Collection;
 
 /**
- * Created by zaicys on 26.01.2017.
+ * Created by Vashurin Alexander on 26.01.2017.
  */
 public class MainFrameForm {
     private int year;

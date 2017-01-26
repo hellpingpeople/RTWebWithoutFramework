@@ -20,6 +20,10 @@ public class Persona implements Comparable {
     private int autoId;
     private char sex;
 
+    public Persona() {
+
+    }
+
     public int getAutoId() {
         return autoId;
     }
