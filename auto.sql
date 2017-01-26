@@ -1,31 +1,33 @@
 ﻿CREATE TABLE auto
 
-(aut_id int not null,
-  first_name varchar(255) not null,
-  sur_name varchar(255) not null,
-  patronymic varchar(255) not null,
-  date_of_birth date not null,
-  sex char(1),
-  primary key (persona_id)
+(auto_id int not null,
+  model_name varchar(255) not null,
+  color varchar(255) not null,
+  reg_number varchar(255) not null,
+  year_of_issue int,
+  quantity int,
+  primary key (auto_id)
 )
 
-insert into persona(persona_id, first_name, sur_name, patronymic,  date_of_birth, sex)
-values (1, 'Вахтанг', 'Берзоев', 'Аркадьевич', '1978-01-01', 'M');
-insert into persona(persona_id, first_name, sur_name, patronymic,  date_of_birth, sex)
-values (2, 'Александр', 'Хоботов', 'Аркадьевич', '1978-01-01', 'M');
-insert into persona(persona_id, first_name, sur_name, patronymic,  date_of_birth, sex)
-values (3, 'Василий', 'Слонидзе', 'Аркадьевич', '1978-01-01', 'M');
-insert into persona(persona_id, first_name, sur_name, patronymic,  date_of_birth, sex)
-values (4, 'Иван', 'Чичваркин', 'Аркадьевич', '1978-01-01', 'M');
-insert into persona(persona_id, first_name, sur_name, patronymic,  date_of_birth, sex)
-values (5, 'Семён', 'Арбузов', 'Аркадьевич', '1978-01-01', 'M');
-insert into persona(persona_id, first_name, sur_name, patronymic,  date_of_birth, sex)
-values (6, 'Алексей', 'Слепаков', 'Аркадьевич', '1978-01-01', 'M');
-insert into persona(persona_id, first_name, sur_name, patronymic,  date_of_birth, sex)
-values (7, 'Сергей', 'Масляков', 'Аркадьевич', '1978-01-01', 'M');
-insert into persona(persona_id, first_name, sur_name, patronymic,  date_of_birth, sex)
-values (8, 'Станислав', 'Гущин', 'Аркадьевич', '1978-01-01', 'M');
-insert into persona(persona_id, first_name, sur_name, patronymic,  date_of_birth, sex)
-values (9, 'Глеб', 'Пушкин', 'Аркадьевич', '1978-01-01', 'M');
-insert into persona(persona_id, first_name, sur_name, patronymic,  date_of_birth, sex)
-values (10, 'Игорь', 'Есенин', 'Аркадьевич', '1978-01-01', 'M');
+insert into auto(auto_id, model_name, color, reg_number,  year_of_issue, quantity)
+values (1, 'Тойота', 'Красный', '777екх', '1978-01-01', 15);
+insert into auto(auto_id, model_name, color, reg_number,  year_of_issue, quantity)
+values (2, 'Мазда', 'Красный', '778екх', '1978-01-01', 15);
+insert into auto(auto_id, model_name, color, reg_number,  year_of_issue, quantity)
+values (3, 'Хёндай', 'Красный', '779екх', '1978-01-01', 15);
+insert into auto(auto_id, model_name, color, reg_number,  year_of_issue, quantity)
+values (4, 'Мерседес-Бенц', 'Красный', '767екх', '1978-01-01', 15);
+insert into auto(auto_id, model_name, color, reg_number,  year_of_issue, quantity)
+values (5, 'Жигули', 'Красный', '757екх', '1978-01-01', 15);
+insert into auto(auto_id, model_name, color, reg_number,  year_of_issue, quantity)
+values (6, 'Лада-Калина', 'Красный', '001екх', '1978-01-01', 15);
+insert into auto(auto_id, model_name, color, reg_number,  year_of_issue, quantity)
+values (7, 'Лада-Самара', 'Красный', '444екх', '1978-01-01', 15);
+insert into auto(auto_id, model_name, color, reg_number,  year_of_issue, quantity)
+values (8, 'Зил', 'Красный', '334екх', '1978-01-01', 15);
+insert into auto(auto_id, model_name, color, reg_number,  year_of_issue, quantity)
+values (9, 'Чайка', 'Красный', '999екх', '1978-01-01', 15);
+insert into auto(auto_id, model_name, color, reg_number,  year_of_issue, quantity)
+values (10, 'Фольксваген', 'Красный', '654екх', '1978-01-01', 15);
+insert into auto(auto_id, model_name, color, reg_number,  year_of_issue, quantity)
+values (11, 'Иж', 'Красный', '333екх', '1978-01-01', 15);
