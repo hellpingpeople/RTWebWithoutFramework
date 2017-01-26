@@ -1,7 +1,12 @@
 package controllers;
 
 import com.google.gson.Gson;
+import models.Auto;
+import models.DataDao;
 import models.Persona;
+import views.MainFrameForm;
+import views.MainFrameServlet;
+import views.PersonaForm;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -47,9 +53,7 @@ public class SimpleList extends HttpServlet {
 
     }
 
-
-        private static final long serialVersionUID = 1L;
-
+    private static final long serialVersionUID = 1L;
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
 
@@ -58,8 +62,8 @@ public class SimpleList extends HttpServlet {
             String term = request.getParameter("term");
             System.out.println("Data from ajax call " + term);
 
-
-            List list = ManagementSystem.getInstance().getAutos();
+            DataDao dataDao = new DataDao();
+            ArrayList<String> list = dataDao.getPersonas(term);
 
             String searchList = new Gson().toJson(list);
             response.getWriter().write(searchList);
@@ -67,5 +71,8 @@ public class SimpleList extends HttpServlet {
             e.printStackTrace();
         }
     }
+
+
+
 }
 

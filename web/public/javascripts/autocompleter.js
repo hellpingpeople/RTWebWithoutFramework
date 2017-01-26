@@ -4,7 +4,7 @@ $(document).ready(function() {
 
 			source : function(request, response) {
 				$.ajax({
-					url : "SimpleList",
+					url : "/simple",
 					type : "POST",
 					data : {
 						term : request.term

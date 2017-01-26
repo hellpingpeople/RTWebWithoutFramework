@@ -1,15 +1,13 @@
 package views;
 
+import com.google.gson.Gson;
 import controllers.ManagementSystem;
 import models.Auto;
 import models.Persona;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Iterator;
+import java.util.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -155,9 +153,8 @@ public class MainFrameServlet extends HttpServlet
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req, resp);
     }
+    protected void doPost(HttpServletRequest request,
+                          HttpServletResponse response) throws ServletException, IOException {
 
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processRequest(req, resp);
-    }
 
-}
+}}

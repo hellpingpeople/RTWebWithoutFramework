@@ -12,6 +12,8 @@
 <head>
   <title>ТЗ для РТ</title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
   <link rel="stylesheet" type="text/css" media="screen" href="/public/stylesheets/main.css">
   <script src="//code.jquery.com/jquery-1.10.2.js" type="text/javascript" charset="UTF-8"></script>
   <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js" type="text/javascript" charset="UTF-8"></script>
@@ -39,8 +41,10 @@
   <h1>Поиск людей</h1>
 
   <p>
-    <input type="text" id="search" size="30">
-    <input type="submit" id="submit" value="Найти человека">
+  <div class="search-container">
+    <div class="ui-widget">
+      <input type="text" id="search" name="search" class="search" />
+    </div>
 
 
     <br>
