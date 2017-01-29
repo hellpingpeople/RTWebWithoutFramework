@@ -37,14 +37,22 @@
   <div class="search-container">
     <div class="ui-widget">
       <input type="text" id="search" name="search" class="search" />
+      <input type="submit" id="submit" name="Искать" class="button"/>
     </div>
 
 
-    <br>
+  Показывать по:
+  <select id="size">
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="20">20</option>
+  </select>
   </p>
 
   <div id="result">
   </div>
+
+
 
 </div>
 
