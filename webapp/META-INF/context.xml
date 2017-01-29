@@ -1,3 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/">
+<Context path="/index">
+    <Resource 
+        driverClassName="org.postgresql.Driver" 
+        maxActive="10" 
+        maxIdle="4" 
+        maxWait="5000" 
+        name="jdbc/RtDB" 
+        username="postgres" 
+        password="postgres" 
+        type="javax.sql.DataSource" 
+        url="jdbc:postgresql://127.0.0.1:5432/rtdb" 
+        validationQuery="SELECT 1">
+    </Resource>
 </Context>
