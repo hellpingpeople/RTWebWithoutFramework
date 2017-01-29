@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html; charset=utf-8" %>
-<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
@@ -18,7 +18,7 @@
     <table>
         <tr>
             <td>Год:<input type="text" name="year" value="${form.year}"/><br/></td>
-            <td>Список групп:
+            <td>Список автомобилей:
                 <select name="autoId">
                     <c:forEach var="auto" items="${form.autos}">
                         <c:choose>
